@@ -1,14 +1,22 @@
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import cn from 'classnames';
 
-const name = '[Your Name]'
-export const siteTitle = 'Next.js Sample Website'
+import styles from './layout.module.scss';
 
-export default function Layout({ children, home }) {
+const name = '[Your Name]';
+export const siteTitle = 'Next.js Sample Website';
+
+export default function Layout({
+  children,
+  home,
+}: {
+  children: React.ReactNode,
+  home?: boolean,
+}) {
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container)}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -18,21 +26,21 @@ export default function Layout({ children, home }) {
         <meta
           property="og:image"
           content={`https://og-image.now.sh/${encodeURI(
-            siteTitle
+            siteTitle,
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
+      <header className="header">
         {home ? (
           <>
             <img
               src="/images/profile.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+              className="headerHomeImage borderCircle"
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className="heading2Xl">{name}</h1>
           </>
         ) : (
           <>
@@ -40,14 +48,14 @@ export default function Layout({ children, home }) {
               <a>
                 <img
                   src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                  className="headerImage borderCircle"
                   alt={name}
                 />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg}>
+            <h2 className="headingLg">
               <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
+                <a className="colorInherit">{name}</a>
               </Link>
             </h2>
           </>
@@ -55,12 +63,16 @@ export default function Layout({ children, home }) {
       </header>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div className="backToHome">
           <Link href="/">
             <a>← Back to home</a>
           </Link>
         </div>
       )}
     </div>
-  )
+  );
 }
+
+Layout.defaultProps = {
+  home: false,
+};
