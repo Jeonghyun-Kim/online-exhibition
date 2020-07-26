@@ -2,20 +2,21 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
+import useTranslation from 'next-translate/useTranslation';
+import Router from 'next-translate/Router';
 
 import Layout, { siteTitle } from '../components/layout';
 import { getSortedPostsData } from '../lib/posts';
 import Date from '../components/date';
 
-export default function Home({
-  allPostsData,
-}: {
+export default function Home({ allPostsData }: {
   allPostsData: {
     date: string
     title: string
     id: string
-  }[]
+  }[],
 }) {
+  const { t } = useTranslation();
   return (
     <Layout home>
       <Head>
@@ -44,6 +45,22 @@ export default function Home({
           ))}
         </ul>
       </section>
+      <div>
+        <h1>Index</h1>
+        <p>{t('common:hello')}</p>
+        <button
+          type="button"
+          onClick={() => Router.pushI18n('/', undefined, { lang: 'en' })}
+        >
+          en
+        </button>
+        <button
+          type="button"
+          onClick={() => Router.pushI18n('/', undefined, { lang: 'ko' })}
+        >
+          ko
+        </button>
+      </div>
     </Layout>
   );
 }

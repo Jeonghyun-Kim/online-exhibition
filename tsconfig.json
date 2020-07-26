@@ -24,9 +24,12 @@
     ]
   },
   "include": [
-    "pages/**/*.*",
+    "pages_/**/*.*",
     "components/**.*.*",
     "lib/**.*.*",
+    "src/**.*.*",
+    "**/*.ts",
+    "**/*.tsx",
     "./types",
     ".eslintrc.js"
   ],

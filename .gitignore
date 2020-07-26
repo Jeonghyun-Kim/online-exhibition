@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# languages (next-translate)
+/pages
+
 # testing
 /coverage
 
