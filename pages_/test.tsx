@@ -17,7 +17,7 @@ export default function Test() {
         <picture>
           <img
             alt="background"
-            src={`${BACKGROUND_IMAGE_URL}/smp_12.png`}
+            src={`${BACKGROUND_IMAGE_URL}/smp_12_01.jpg`}
           />
         </picture>
       </div>
